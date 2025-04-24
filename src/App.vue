@@ -1,47 +1,44 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <Header />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <section class="banner">
 
-  <main>
-    <TheWelcome />
-  </main>
+        <div class="description-autor">
+            <button class="secondary">
+                Autor de Abril
+            </button>
+            <h1> Eric-Emanuel Schmitt </h1>
+            <p>Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and distinctions, and in 2001 he received the title of Chevalier des Arts et des Lettres. His books have been translated into over 40 languages.</p>
+            <button class="primary">Acessar página do livro</button>
+        </div>
+
+        <img src="/public/images/livroBanner.png" alt="Nocognia book">
+    </section>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+/*========================
+        BANNER
+*==========================*/
+
+.banner{
+    display: flex;
+    align-items: center;
+    margin: 2vw 5vw;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.description-autor h1{
+    font-size: 3.5em;
+    font-weight: bold;
+    margin: 1vw 0 2vw 0;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.description-autor p{
+    font-size: 1.5em;
+    width: 70%;
+    margin-bottom: 2vw;
 }
 </style>
