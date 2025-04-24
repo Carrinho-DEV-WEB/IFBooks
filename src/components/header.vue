@@ -35,7 +35,10 @@
 
 <style scoped>
 header{
+  background: #ffff;
     border-bottom: #27AE60 solid 2px;
+    width: 100%;
+    position: fixed;
 }
 
 .nav-bar{
