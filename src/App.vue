@@ -122,15 +122,6 @@ const books = ref([
   <Footer />
 </template>
 
-<script>
-import Footer from './components/FooterComponent.vue'
-
-export default {
-  components: {
-    Footer
-  }
-}
-</script>
 
 <style scoped>
 /*========================

@@ -1,3 +1,6 @@
+<script setup></script>
+
+
 <template>
     <footer class="footer">
       <div class="footer-container">
@@ -11,6 +14,7 @@
         </div>
   
         <div class="footer-right">
+          <h3>Contato</h3>
           <p><i class="fa-solid fa-phone"></i> +55 47 4004-5263</p>
           <p><i class="fa-regular fa-clock"></i> 8h às 23h - Seg a Sex</p>
           <p><i class="fa-regular fa-envelope"></i> contato@ifbooks.com</p>
@@ -23,17 +27,13 @@
       </div>
     </footer>
   </template>
-  
-  <script>
-  export default {
-    name: 'FooterComponent'
-  }
-  </script>
-  
+    
   <style scoped>
+  p, h3{
+    color: white;
+  }
   .footer {
     background-color: #27AE60;
-    color: white;
     padding: 40px 20px 20px;
   }
   
@@ -46,18 +46,28 @@
   }
   
   .footer-left h3 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   .social-icons a {
     margin-right: 15px;
-    font-size: 20px;
+    font-size: 1.6em;
     color: white;
     text-decoration: none;
+    transition: .5s;
   }
   
+  .social-icons a:hover{
+    color: #c9c9c9;
+  } 
+
+  .footer-right h3{
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
   .footer-right p {
-    margin: 5px 0;
+    margin: 20px 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -72,5 +82,7 @@
     text-align: center;
     margin-top: 30px;
     font-size: 14px;
+    border-top: 2px solid #ffff;
+    padding: 20px;
   }
   </style>
