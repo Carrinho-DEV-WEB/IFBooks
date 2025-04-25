@@ -6,12 +6,14 @@ const books = ref([
     id: 1,
     cover: 'public/images/chainOfIron.png',
     title: 'Chain of Iron: Volume 2',
+    description: 'Cassandra Clare é a autora internacionalmente aclamada das Crônicas dos Caçadores de Sombras, uma série de fantasia best-seller. Em Chain of Iron, o segundo volume da série The Last Hours, ela traz de volta os personagens queridos em um mundo de magia, amor e perigo. Os livros de Clare cativaram milhões de leitores e foram traduzidos para mais de 35 idiomas.',
     author: 'Cassandra Clare',
     price: 23.24,
   },
   {
     id: 2,
     cover: 'public/images/chainOfThorns.png',
+    description: 'O livro final da série The Last Hours, Chain of Thorns de Cassandra Clare, promete concluir a épica história com ação eletrizante e um romance arrebatador. Clare é uma mestre na arte de contar histórias, e suas obras conquistaram uma legião de fãs ao redor do mundo. Com mais de 50 milhões de cópias vendidas, seus livros foram traduzidos para mais de 30 idiomas.',
     title: 'Chain of Thorns',
     author: 'Cassandra Clare',
     price: 23.24,
@@ -20,6 +22,7 @@ const books = ref([
     id: 3,
     cover: 'public/images/cityOfFallen.png',
     title: 'City of Fallen Angels',
+    description: 'City of Fallen Angels de Cassandra Clare é o quarto livro da série Os Instrumentos Mortais. Conhecida por seus personagens envolventes e construção de mundo intrincada, Clare criou um fenômeno no gênero jovem adulto. Seus livros venderam milhões de cópias e foram traduzidos para mais de 40 idiomas, cativando leitores ao redor do mundo.',
     author: 'Cassandra Clare',
     price: 13.94,
   },
@@ -27,6 +30,7 @@ const books = ref([
     id: 4,
     cover: 'public/images/nonaTheNinth.png',
     title: 'Nona The Ninth',
+    description: 'Cassandra Clare, uma das grandes promessas da ficção especulativa, é conhecida por sua narrativa sombria e inovadora. Nona the Ninth é o terceiro livro da série The Locked Tomb, uma mistura de ficção científica e fantasia. O estilo único de Muir e seus personagens complexos conquistaram uma base de fãs fiel, e seu trabalho tem sido amplamente aclamado pela crítica.',
     author: 'Cassandra Clare',
     price: 16.84,
   },
@@ -34,6 +38,7 @@ const books = ref([
     id: 5,
     cover: 'public/images/harlemShuffle.png',
     title: 'Harlem Shurffle',
+    description: 'Colson Whitehead, vencedor de dois Prêmios Pulitzer, leva os leitores a uma jornada pelos anos 1960 em Harlem com Harlem Shuffle. Com uma mistura magistral de história e ficção, Whitehead explora temas de crime, família e identidade em uma cidade vibrante. Seus livros, incluindo O Trem Subterrâneo e Os Meninos da Nickel, foram traduzidos para mais de 30 idiomas.',
     author: 'Colson Whitehead',
     price: 26.92,
   },
@@ -41,12 +46,14 @@ const books = ref([
     id: 6,
     cover: 'public/images/twoOldWomen.png',
     title: 'Two Old Women',
+    description: 'Two Old Women de Velma Wallis é uma história poderosa sobre sobrevivência, resiliência e amizade, inspirada nas tradições e no folclore dos povos nativos do Alasca. Wallis cativou os leitores com sua narrativa, e o livro se tornou um clássico querido, traduzido para vários idiomas. Sua escrita continua a inspirar e ressoar com o público em todo o mundo.',
     author: 'Velma Wallis',
     price: 13.95,
   },
   {
     id: 7,
     cover: 'public/images/CarrieSotoIsBack.png',
+    description: 'Taylor Jenkins Reid, autora de Os Sete Maridos de Evelyn Hugo, traz aos leitores uma história emocionante sobre o retorno de uma ícone do tênis ao esporte em Carrie Soto Is Back. Conhecida por suas narrativas emocionais e profunda exploração de personagens, as obras de Reid cativaram os leitores e foram traduzidas para vários idiomas, conquistando uma base de fãs global.',
     title: 'Carrie Soto Is Back',
     author: 'Taylor Jenkins Reid',
     price: 26.04,
@@ -54,12 +61,19 @@ const books = ref([
   {
     id: 8,
     cover: 'public/images/bookLovers.png',
+    description: 'Emily Henry, conhecida por seus romances espirituosos e tocantes, traz uma abordagem refrescante do gênero romântico em Book Lovers. Esta encantadora história sobre uma editora de livros e um agente literário navegando pelo amor, vida e carreira tocou o coração de leitores ao redor do mundo. Os livros de Henry se tornaram bestsellers e foram traduzidos para diversos idiomas, tornando-a uma das autoras contemporâneas mais queridas',
     title: 'Book Lovers',
     author: 'Emily Henry',
     price: 15.81,
   },
 ])
 
+function recommendedBook(){
+  const indexBook = Math.floor(Math.random() * books.value.length)
+  return books.value[indexBook]
+} 
+
+const randomBook = ref(recommendedBook())
 </script>
 
 <template>
@@ -67,17 +81,13 @@ const books = ref([
   <main>
     <section class="banner">
       <div class="description-autor">
-        <button class="secondary">Autor de Abril</button>
-        <h1>Eric-Emanuel Schmitt</h1>
-        <p>
-          Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and distinctions, and
-          in 2001 he received the title of Chevalier des Arts et des Lettres. His books have been
-          translated into over 40 languages.
-        </p>
+        <button class="secondary">Livro Recomendado</button>
+        <h1>{{ randomBook.title }}</h1>
+        <p>{{ randomBook.description }}</p>
         <button class="primary">Acessar página do livro</button>
       </div>
 
-      <img src="/public/images/livroBanner.png" alt="Nocognia book" />
+      <img :src="randomBook.cover" alt="book image" />
     </section>
 
     <section class="catalog-options">
@@ -122,15 +132,6 @@ const books = ref([
   <Footer />
 </template>
 
-<script>
-import Footer from './components/FooterComponent.vue'
-
-export default {
-  components: {
-    Footer
-  }
-}
-</script>
 
 <style scoped>
 /*========================
@@ -138,7 +139,7 @@ export default {
 *==========================*/
 
 main {
-  padding-top: 30px;
+  padding-top: 100px;
 }
 
 .banner {
@@ -205,6 +206,8 @@ main {
 }
 
 .catalog-books ul li{
+    display: flex;
+    flex-direction: column;
     margin:1vw;
 }
 
