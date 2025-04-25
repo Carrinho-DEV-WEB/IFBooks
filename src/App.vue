@@ -59,6 +59,7 @@ const books = ref([
     price: 15.81,
   },
 ])
+
 </script>
 
 <template>
@@ -118,7 +119,18 @@ const books = ref([
 
     </section>
   </main>
+  <Footer />
 </template>
+
+<script>
+import Footer from './components/FooterComponent.vue'
+
+export default {
+  components: {
+    Footer
+  }
+}
+</script>
 
 <style scoped>
 /*========================
