@@ -1,9 +1,18 @@
-<script setup></script>
+<script setup>
+const emit = defineEmits(['change-page'])
+
+function home(){
+  emit('change-page', 'home');
+}
+
+
+
+</script>
 
 <template>
   <header>
     <nav class="nav-bar">
-      <a href="app.vue">
+      <a href="#" @click="home">
         <img src="/public/images/logo.png" alt="logo png" />
       </a>
 
@@ -91,7 +100,7 @@ a:hover{
     background-color: #F1F1F1;
     color: #B8B8B8;
     border: none;
-    padding: 0.8vw 10vw 0.8vw 0.8vw;
+    padding: 0.8vw 11vw 0.8vw 0.8vw;
     transition: 0.5s;
 }
 
