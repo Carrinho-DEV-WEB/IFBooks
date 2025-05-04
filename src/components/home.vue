@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
+import Favorites from './favorites.vue';
 
+//CATALOGO DE LIVROS
 const books = ref([
   {
     id: 1,
@@ -68,11 +70,22 @@ const books = ref([
   },
 ])
 
+//MUDA O LIVRO DO BANNER
 function recommendedBook(){
   const indexBook = Math.floor(Math.random() * books.value.length)
   return books.value[indexBook]
 } 
-const randomBook = ref(recommendedBook())
+const randomBook = ref(recommendedBook());
+
+//ENVIAR PRODUTOS A FUNÇÃO QUE ADICIONA AOS FAVORITOS
+const favorites = inject('favorites');
+const addToFavorites = inject('addFavorites');
+function sendBook(book){
+  if(addToFavorites){
+    addToFavorites({...book});
+  }
+};
+
 </script>
 
 <template>
@@ -118,16 +131,17 @@ const randomBook = ref(recommendedBook())
                 <p>{{ book.author }}</p>
                 <div class="price-area">
                     <h3>R$ {{ book.price }}</h3>
-                    <i class="fa-regular fa-heart"></i>
+                    <i @click="sendBook(book)" :class="favorites.includes(book) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
                 </div>
-                <button class="primary"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                <button class="primary">
+                  <i class="fa-solid fa-cart-shopping"></i> Comprar
+                </button>
             </li>
 
         </ul>
 
     </section>
   </main>
-  <Footer />
 </template>
 
 
