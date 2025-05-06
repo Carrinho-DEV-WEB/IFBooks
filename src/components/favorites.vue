@@ -8,6 +8,15 @@ if (!favorites) {
 </script>
 
 <template>
+
+<main>
+
+<section class="empty-list" v-if="favorites.length === 0">
+  <i class="fa-solid fa-heart-crack"></i>
+  <h1>Não há nenhum livro nos seus favoritos.</h1>
+</section>
+
+<section class="fav-list" v-else>  
   <ul>
     <li v-for="favorite in favorites" :key="favorite.id">
         <img :src="favorite.cover" alt="book cover">
@@ -19,6 +28,9 @@ if (!favorites) {
         </button>
     </li>
   </ul>
+</section>
+
+</main>
 </template>
 
 

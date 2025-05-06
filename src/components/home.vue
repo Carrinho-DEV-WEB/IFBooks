@@ -131,7 +131,7 @@ function sendBook(book){
                 <p>{{ book.author }}</p>
                 <div class="price-area">
                     <h3>R$ {{ book.price }}</h3>
-                    <i @click="sendBook(book)" :class="favorites.includes(book) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+                    <i @click="sendBook(book)" :class="favorites.some(fav => fav.id === book.id) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
                 </div>
                 <button class="primary">
                   <i class="fa-solid fa-cart-shopping"></i> Comprar
