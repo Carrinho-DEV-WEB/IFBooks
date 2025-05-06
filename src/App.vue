@@ -17,6 +17,7 @@ function addFavorites(book){
 provide('favorites', favorites);
 provide('addFavorites', addFavorites);
 
+
 </script>
 
 <template>

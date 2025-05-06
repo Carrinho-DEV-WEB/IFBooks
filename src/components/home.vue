@@ -1,6 +1,6 @@
 <script setup>
-import { ref, inject } from 'vue'
-import Favorites from './favorites.vue';
+import { ref, inject, provide } from 'vue'
+
 
 //CATALOGO DE LIVROS
 const books = ref([
@@ -69,6 +69,8 @@ const books = ref([
     price: 15.81,
   },
 ])
+
+provide('books', books)
 
 //MUDA O LIVRO DO BANNER
 function recommendedBook(){

@@ -1,12 +1,16 @@
 <script setup>
+import { B } from "vite/dist/node/chunks/dep-Bid9ssRr";
+import { inject } from "vue";
+
+const books = inject('books')
 const emit = defineEmits(['change-page'])
 
 function home(){
   emit('change-page', 'home');
 }
-
-
-
+function searchBar() {
+if (books.value.find())
+}
 </script>
 
 <template>
@@ -17,7 +21,8 @@ function home(){
       </a>
 
       <div class="search-area">
-          <input type="search" placeholder="Pesquisar" />
+          <input v-model="" type="search" placeholder="Pesquisar" />
+
       </div>
 
       <ul class="nav-list">
