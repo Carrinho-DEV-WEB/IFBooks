@@ -1,6 +1,6 @@
 <script setup>
-import { B } from "vite/dist/node/chunks/dep-Bid9ssRr";
-import { inject } from "vue";
+import { inject, provide } from "vue";
+
 
 const books = inject('books')
 const emit = defineEmits(['change-page'])
@@ -8,8 +8,12 @@ const emit = defineEmits(['change-page'])
 function home(){
   emit('change-page', 'home');
 }
-function searchBar() {
-if (books.value.find())
+function searchBar(book) {
+if (books.value.find(b => b.title === book.title)){
+  const foundBook = book
+}
+
+provide('searchBar', searchBar)
 }
 </script>
 
@@ -21,7 +25,7 @@ if (books.value.find())
       </a>
 
       <div class="search-area">
-          <input v-model="" type="search" placeholder="Pesquisar" />
+          <input type="search" placeholder="Pesquisar" />
 
       </div>
 
