@@ -88,14 +88,6 @@ function sendBook(book){
   }
 };
 
-const addSearchBar = inject('searchBar')
-
-function sendToSearch(book) {
-  if (addSearchBar) {
-    addSearchBar({...book})
-  }
-
-};
 
 </script>
 

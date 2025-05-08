@@ -1,20 +1,17 @@
 <script setup>
-import { inject, provide } from "vue";
+import { inject, } from 'vue'
 
-
-const books = inject('books')
+const searchBook = inject('searchBook')
 const emit = defineEmits(['change-page'])
+const books = inject('books')
 
-function home(){
-  emit('change-page', 'home');
+function home() {
+  emit('change-page', 'home')
 }
-function searchBar(book) {
-if (books.value.find(b => b.title === book.title)){
-  const foundBook = book
+function pullBook() {
+  const resultado = books.filter()
 }
 
-provide('searchBar', searchBar)
-}
 </script>
 
 <template>
@@ -25,8 +22,7 @@ provide('searchBar', searchBar)
       </a>
 
       <div class="search-area">
-          <input type="search" placeholder="Pesquisar" />
-
+        <input type="search" v-model="searchBook" @keyup.enter="pullBook" placeholder="Pesquisar" />
       </div>
 
       <ul class="nav-list">
@@ -44,7 +40,7 @@ provide('searchBar', searchBar)
           <a href="#"><i class="fa-solid fa-heart"></i></a> |
         </li>
         <li>
-            <a href="#"><i class="fa-solid fa-user"></i></a>
+          <a href="#"><i class="fa-solid fa-user"></i></a>
         </li>
       </ul>
     </nav>
@@ -52,77 +48,77 @@ provide('searchBar', searchBar)
 </template>
 
 <style scoped>
-header{
+header {
   background: #ffff;
-    border-bottom: #27AE60 solid 2px;
-    width: 100%;
-    position: fixed;
+  border-bottom: #27ae60 solid 2px;
+  width: 100%;
+  position: fixed;
 }
 
-.nav-bar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 1vw 3vw;
+  padding: 1vw 3vw;
 }
 
-ul{
-    display: flex;
+ul {
+  display: flex;
 }
 
-a{
-    color: #7B7881;
-    transition: .5s;
+a {
+  color: #7b7881;
+  transition: 0.5s;
 }
 
-a:hover{
-    color: #3f3f3f;
+a:hover {
+  color: #3f3f3f;
 }
 
-.nav-list li{
-    margin-right: 3vw;
-    transition: .5s;
+.nav-list li {
+  margin-right: 3vw;
+  transition: 0.5s;
 }
 
-.icons-list li{
-    font-size: 1.3em;
-    color: #27AE60;
+.icons-list li {
+  font-size: 1.3em;
+  color: #27ae60;
 }
 
-.icons-list li a{
-    color: #27AE60;
-    margin: 0 1vw;
-    transition: .5s;
+.icons-list li a {
+  color: #27ae60;
+  margin: 0 1vw;
+  transition: 0.5s;
 }
 
-.icons-list li a:hover{
-    color: #1d7541;
+.icons-list li a:hover {
+  color: #1d7541;
 }
 
-.search-area input{
+.search-area input {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23666' d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat ;
+  background-repeat: no-repeat;
   background-position: 20vw center;
   background-size: 25px 25px;
 
-    background-color: #F1F1F1;
-    color: #B8B8B8;
-    border: none;
-    padding: 0.8vw 11vw 0.8vw 0.8vw;
-    transition: 0.5s;
+  background-color: #f1f1f1;
+  color: #b8b8b8;
+  border: none;
+  padding: 0.8vw 11vw 0.8vw 0.8vw;
+  transition: 0.5s;
 }
 
-.search-area input:focus{
-    box-shadow: 0px 3px 7px #979797;
-    outline: none;
+.search-area input:focus {
+  box-shadow: 0px 3px 7px #979797;
+  outline: none;
 }
 
-.search-area button{
-    border: none;
-    background-color: #F1F1F1;
-    color: #231F2D;
-    font-size: 0.8em;
-    padding: 0.8vw;
+.search-area button {
+  border: none;
+  background-color: #f1f1f1;
+  color: #231f2d;
+  font-size: 0.8em;
+  padding: 0.8vw;
 }
 </style>

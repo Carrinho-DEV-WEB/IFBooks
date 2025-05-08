@@ -17,7 +17,9 @@ function addFavorites(book){
 provide('favorites', favorites);
 provide('addFavorites', addFavorites);
 
-
+// GUARDAR O LIVRO PESQUISADO PELO USUÁRIO
+const searchBook = ref('')
+provide ('searchBook', searchBook)
 </script>
 
 <template>
