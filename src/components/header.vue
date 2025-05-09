@@ -1,20 +1,12 @@
 <script setup>
-const emit = defineEmits(['change-page'])
-
-function home(){
-  emit('change-page', 'home');
-}
-
-
-
 </script>
 
 <template>
   <header>
     <nav class="nav-bar">
-      <a href="#" @click="home">
+      <router-link to="/">
         <img src="/public/images/logo.png" alt="logo png" />
-      </a>
+      </router-link>
 
       <div class="search-area">
           <input type="search" placeholder="Pesquisar" />
@@ -29,10 +21,15 @@ function home(){
 
       <ul class="icons-list">
         <li>
-          <a href="#"><i class="fa-solid fa-cart-shopping"></i></a> |
+        <router-link>
+          <i class="fa-solid fa-cart-shopping"></i> |
+        </router-link>
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-heart"></i></a> |
+        <router-link to="/favorites">
+          <i class="fa-solid fa-heart"></i> |
+        </router-link>
+
         </li>
         <li>
             <a href="#"><i class="fa-solid fa-user"></i></a>
@@ -81,13 +78,13 @@ a:hover{
     color: #27AE60;
 }
 
-.icons-list li a{
+.icons-list li a i{
     color: #27AE60;
     margin: 0 1vw;
     transition: .5s;
 }
 
-.icons-list li a:hover{
+.icons-list li i:hover{
     color: #1d7541;
 }
 
