@@ -1,35 +1,38 @@
 <script setup>
-import { ref, provide } from 'vue'
+import { ref, provide } from 'vue';
+import Header from './components/header.vue';
+import Footer from './components/footer.vue';
 
-//MOVER ENTRE OS COMPONENTES
-const currentPage = ref('home');
-function changePage(page){
-  currentPage.value = page
-}
-
-//ADICIONAR LIVROS AOS FAVORITOS
+//ADICIONAR ou REMOVER LIVROS DOS FAVORITOS
 const favorites = ref([]);
-function addFavorites(book){
-  if(!favorites.value.find(fav => fav.id === book.id)){
+function updateFavorites(book){
+  const index = favorites.value.findIndex(f => f.id === book.id);
+  if(index === -1){
     favorites.value.push(book);
   }
+  else{
+    favorites.value.splice(index, 1)
+  }
 }
+
+provide('updateFavorites', updateFavorites);
 provide('favorites', favorites);
-provide('addFavorites', addFavorites);
 
 </script>
 
 <template>
-  <Header @change-page="changePage"/>
+  <Header />
 
-  <section v-if=" currentPage === 'home' ">
-    <Home />
-    <Favorites />
-  </section>
-  
+  <main>
+    <router-view />
+  </main>
+
   <Footer />
 </template>
 
 <style scoped>
   
+main {
+  padding-top: 80px;
+}
 </style>
