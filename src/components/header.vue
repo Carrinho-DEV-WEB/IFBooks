@@ -21,9 +21,7 @@
 
       <ul class="icons-list">
         <li>
-        <router-link>
           <i class="fa-solid fa-cart-shopping"></i> |
-        </router-link>
         </li>
         <li>
         <router-link to="/favorites">
@@ -41,10 +39,11 @@
 
 <style scoped>
 header{
-  background: #ffff;
+    background: #ffff;
     border-bottom: #27AE60 solid 2px;
     width: 100%;
     position: fixed;
+    z-index: 100;
 }
 
 .nav-bar{
@@ -78,9 +77,10 @@ a:hover{
     color: #27AE60;
 }
 
-.icons-list li a i{
+.icons-list li i{
     color: #27AE60;
     margin: 0 1vw;
+    cursor: pointer;
     transition: .5s;
 }
 

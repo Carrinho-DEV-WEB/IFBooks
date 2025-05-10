@@ -1,82 +1,95 @@
 <script setup>
 import { ref, inject } from 'vue'
-import Favorites from './favorites.vue'
+import { useRouter } from 'vue-router';
+
+const favorites = inject('favorites');
+const updateToFavorites = inject('updateFavorites');
+const openBookDetails = inject('openBookDetails');
+const router = useRouter()
 
 //CATALOGO DE LIVROS
 const books = ref([
   {
     id: 1,
-    cover: 'public/images/chainOfIron.png',
+    cover: '/images/chainOfIron.png',
     title: 'Chain of Iron: Volume 2',
-    description:
-      'Cassandra Clare é a autora internacionalmente aclamada das Crônicas dos Caçadores de Sombras, uma série de fantasia best-seller. Em Chain of Iron, o segundo volume da série The Last Hours, ela traz de volta os personagens queridos em um mundo de magia, amor e perigo. Os livros de Clare cativaram milhões de leitores e foram traduzidos para mais de 35 idiomas.',
+    publication: '2021',
+    description: 'Cassandra Clare é a autora internacionalmente aclamada das Crônicas dos Caçadores de Sombras, uma série de fantasia best-seller. Em Chain of Iron, o segundo volume da série The Last Hours, ela traz de volta os personagens queridos em um mundo de magia, amor e perigo. Os livros de Clare cativaram milhões de leitores e foram traduzidos para mais de 35 idiomas.',
+    review: 'Chain of Iron mergulha os leitores ainda mais fundo no universo sombrio e fascinante criado por Cassandra Clare. Neste segundo volume da trilogia The Last Hours, os personagens enfrentam novos desafios que testam os limites de sua coragem e lealdade. A narrativa é repleta de reviravoltas, com um enredo habilmente entrelaçado de romance, mistério e batalhas sobrenaturais. Clare entrega diálogos emocionantes e desenvolvimento de personagens que prendem a atenção do início ao fim. Uma leitura imperdível para fãs de fantasia urbana.',
     author: 'Cassandra Clare',
     price: 23.24,
   },
   {
     id: 2,
-    cover: 'public/images/chainOfThorns.png',
-    description:
-      'O livro final da série The Last Hours, Chain of Thorns de Cassandra Clare, promete concluir a épica história com ação eletrizante e um romance arrebatador. Clare é uma mestre na arte de contar histórias, e suas obras conquistaram uma legião de fãs ao redor do mundo. Com mais de 50 milhões de cópias vendidas, seus livros foram traduzidos para mais de 30 idiomas.',
+    cover: '/images/chainOfThorns.png',
     title: 'Chain of Thorns',
+    publication: '2023',
+    description: 'O livro final da série The Last Hours, Chain of Thorns de Cassandra Clare, promete concluir a épica história com ação eletrizante e um romance arrebatador. Clare é uma mestre na arte de contar histórias, e suas obras conquistaram uma legião de fãs ao redor do mundo. Com mais de 50 milhões de cópias vendidas, seus livros foram traduzidos para mais de 30 idiomas.',
+    review: 'Chain of Thorns é o grandioso encerramento da trilogia The Last Hours, oferecendo uma conclusão emocionalmente impactante e cheia de ação. Cassandra Clare equilibra habilmente cenas de batalhas intensas com momentos íntimos de romance e descobertas pessoais. Os personagens evoluem significativamente, confrontando o passado e redefinindo seu futuro. Clare encerra a série com maestria, entregando um final que é tanto satisfatório quanto melancólico. Uma jornada épica para leitores que acompanharam essa saga desde o início.',
     author: 'Cassandra Clare',
     price: 23.24,
   },
   {
     id: 3,
-    cover: 'public/images/cityOfFallen.png',
+    cover: '/images/cityOfFallen.png',
     title: 'City of Fallen Angels',
-    description:
-      'City of Fallen Angels de Cassandra Clare é o quarto livro da série Os Instrumentos Mortais. Conhecida por seus personagens envolventes e construção de mundo intrincada, Clare criou um fenômeno no gênero jovem adulto. Seus livros venderam milhões de cópias e foram traduzidos para mais de 40 idiomas, cativando leitores ao redor do mundo.',
+    publication: '2011',
+    description: 'City of Fallen Angels de Cassandra Clare é o quarto livro da série Os Instrumentos Mortais. Conhecida por seus personagens envolventes e construção de mundo intrincada, Clare criou um fenômeno no gênero jovem adulto. Seus livros venderam milhões de cópias e foram traduzidos para mais de 40 idiomas, cativando leitores ao redor do mundo.',
+    review: 'Em City of Fallen Angels, Cassandra Clare continua sua aclamada série Os Instrumentos Mortais com uma trama mais sombria e emocionalmente carregada. A tensão entre os personagens principais aumenta, assim como o perigo que os cerca. O livro explora as consequências das escolhas feitas anteriormente e mergulha mais fundo nos dilemas morais e nas emoções humanas. Clare mantém o leitor intrigado com sua escrita fluida, personagens carismáticos e um enredo que cresce em intensidade a cada página.',
     author: 'Cassandra Clare',
     price: 13.94,
   },
   {
     id: 4,
-    cover: 'public/images/nonaTheNinth.png',
+    cover: '/images/nonaTheNinth.png',
     title: 'Nona The Ninth',
-    description:
-      'Cassandra Clare, uma das grandes promessas da ficção especulativa, é conhecida por sua narrativa sombria e inovadora. Nona the Ninth é o terceiro livro da série The Locked Tomb, uma mistura de ficção científica e fantasia. O estilo único de Muir e seus personagens complexos conquistaram uma base de fãs fiel, e seu trabalho tem sido amplamente aclamado pela crítica.',
+    publication: '2022',
+    description: 'Cassandra Clare, uma das grandes promessas da ficção especulativa, é conhecida por sua narrativa sombria e inovadora. Nona the Ninth é o terceiro livro da série The Locked Tomb, uma mistura de ficção científica e fantasia. O estilo único de Muir e seus personagens complexos conquistaram uma base de fãs fiel, e seu trabalho tem sido amplamente aclamado pela crítica.',
+    review: 'Nona the Ninth é uma obra singular dentro da ficção científica e da fantasia, misturando elementos de necromancia, identidade e transformação pessoal. Com uma protagonista intrigante e um universo complexo, o livro oferece uma leitura desafiadora e recompensadora. Clare cria uma atmosfera de estranheza e beleza ao mesmo tempo, com um enredo que exige atenção e reflexão. Para os leitores que buscam algo fora do comum e com profundidade filosófica, este é um excelente exemplar.',
     author: 'Cassandra Clare',
     price: 16.84,
   },
   {
     id: 5,
-    cover: 'public/images/harlemShuffle.png',
+    cover: '/images/harlemShuffle.png',
+    publication: '2021',
     title: 'Harlem Shurffle',
-    description:
-      'Colson Whitehead, vencedor de dois Prêmios Pulitzer, leva os leitores a uma jornada pelos anos 1960 em Harlem com Harlem Shuffle. Com uma mistura magistral de história e ficção, Whitehead explora temas de crime, família e identidade em uma cidade vibrante. Seus livros, incluindo O Trem Subterrâneo e Os Meninos da Nickel, foram traduzidos para mais de 30 idiomas.',
+    description: 'Colson Whitehead, vencedor de dois Prêmios Pulitzer, leva os leitores a uma jornada pelos anos 1960 em Harlem com Harlem Shuffle. Com uma mistura magistral de história e ficção, Whitehead explora temas de crime, família e identidade em uma cidade vibrante. Seus livros, incluindo O Trem Subterrâneo e Os Meninos da Nickel, foram traduzidos para mais de 30 idiomas.',
+    review: 'Harlem Shuffle é uma vibrante mistura de ficção criminal e retrato social, onde Colson Whitehead nos transporta para a Nova York dos anos 1960 com maestria. A história acompanha Ray Carney, um vendedor de móveis com um pé no mundo do crime, enquanto tenta equilibrar moralidade e sobrevivência. Com diálogos afiados, ambientação riquíssima e críticas sociais sutis, o livro é tanto um romance de personagem quanto uma análise da dinâmica racial e econômica da época. Um romance urbano elegante e cheio de camadas.',
     author: 'Colson Whitehead',
     price: 26.92,
   },
   {
     id: 6,
-    cover: 'public/images/twoOldWomen.png',
+    cover: '/images/twoOldWomen.png',
     title: 'Two Old Women',
-    description:
-      'Two Old Women de Velma Wallis é uma história poderosa sobre sobrevivência, resiliência e amizade, inspirada nas tradições e no folclore dos povos nativos do Alasca. Wallis cativou os leitores com sua narrativa, e o livro se tornou um clássico querido, traduzido para vários idiomas. Sua escrita continua a inspirar e ressoar com o público em todo o mundo.',
+    publication: '1993',
+    description: 'Two Old Women de Velma Wallis é uma história poderosa sobre sobrevivência, resiliência e amizade, inspirada nas tradições e no folclore dos povos nativos do Alasca. Wallis cativou os leitores com sua narrativa, e o livro se tornou um clássico querido, traduzido para vários idiomas. Sua escrita continua a inspirar e ressoar com o público em todo o mundo.',
+    review: 'Baseado em uma lenda ancestral, Two Old Women é um conto inspirador de superação e sabedoria. Velma Wallis conta a história de duas idosas deixadas para morrer por sua tribo durante o inverno rigoroso. Em vez de sucumbirem, elas usam sua experiência e coragem para sobreviver, redescobrindo sua força e independência. O livro é curto, mas profundamente tocante, oferecendo lições sobre dignidade, coragem e reconciliação. Uma joia literária que fala direto ao coração.',
     author: 'Velma Wallis',
     price: 13.95,
   },
   {
     id: 7,
-    cover: 'public/images/CarrieSotoIsBack.png',
-    description:
-      'Taylor Jenkins Reid, autora de Os Sete Maridos de Evelyn Hugo, traz aos leitores uma história emocionante sobre o retorno de uma ícone do tênis ao esporte em Carrie Soto Is Back. Conhecida por suas narrativas emocionais e profunda exploração de personagens, as obras de Reid cativaram os leitores e foram traduzidas para vários idiomas, conquistando uma base de fãs global.',
+    cover: '/images/CarrieSotoIsBack.png',
     title: 'Carrie Soto Is Back',
+    publication: '2022',
+    description: 'Taylor Jenkins Reid, autora de Os Sete Maridos de Evelyn Hugo, traz aos leitores uma história emocionante sobre o retorno de uma ícone do tênis ao esporte em Carrie Soto Is Back. Conhecida por suas narrativas emocionais e profunda exploração de personagens, as obras de Reid cativaram os leitores e foram traduzidas para vários idiomas, conquistando uma base de fãs global.',
+    review: 'Carrie Soto Is Back é uma celebração da força feminina, da determinação e da complexidade emocional por trás das grandes conquistas. Taylor Jenkins Reid mergulha na mente de uma atleta lendária que decide retornar ao topo do tênis, enfrentando não só adversárias mais jovens, mas também seus próprios limites físicos e emocionais. A narrativa é envolvente, com ritmo ágil e muitos momentos de reflexão. Uma história inspiradora sobre identidade, envelhecimento e a eterna busca pela excelência.',
     author: 'Taylor Jenkins Reid',
     price: 26.04,
   },
   {
     id: 8,
-    cover: 'public/images/bookLovers.png',
-    description:
-      'Emily Henry, conhecida por seus romances espirituosos e tocantes, traz uma abordagem refrescante do gênero romântico em Book Lovers. Esta encantadora história sobre uma editora de livros e um agente literário navegando pelo amor, vida e carreira tocou o coração de leitores ao redor do mundo. Os livros de Henry se tornaram bestsellers e foram traduzidos para diversos idiomas, tornando-a uma das autoras contemporâneas mais queridas',
+    cover: '/images/bookLovers.png',
     title: 'Book Lovers',
+    publication: '2022',
+    description: 'Emily Henry, conhecida por seus romances espirituosos e tocantes, traz uma abordagem refrescante do gênero romântico em Book Lovers. Esta encantadora história sobre uma editora de livros e um agente literário navegando pelo amor, vida e carreira tocou o coração de leitores ao redor do mundo. Os livros de Henry se tornaram bestsellers e foram traduzidos para diversos idiomas, tornando-a uma das autoras contemporâneas mais queridas',
+    review: 'Book Lovers é um romance encantador e cheio de camadas, que vai além da comédia romântica tradicional. Emily Henry apresenta personagens bem construídos, vulneráveis e engraçados, em uma trama que celebra os livros, os relacionamentos e os recomeços. A química entre os protagonistas é palpável, e os diálogos são inteligentes e emocionantes. Ideal para quem busca uma leitura leve, mas com profundidade emocional e literária.',
     author: 'Emily Henry',
     price: 15.81,
   },
-])
+]);
 
 //MUDA O LIVRO DO BANNER
 function recommendedBook() {
@@ -86,12 +99,16 @@ function recommendedBook() {
 const randomBook = ref(recommendedBook())
 
 //ENVIAR PRODUTOS A FUNÇÃO QUE ADICIONA AOS FAVORITOS
-const favorites = inject('favorites');
-const updateToFavorites = inject('updateFavorites')
-
 function sendBook(book){
   updateToFavorites({...book})
 }
+
+//MUDAR DA PAGINA PARA O CARD
+function clickBook(book){
+  openBookDetails(book)
+  router.push('/Bookcard')
+}
+
 </script>
 
 <template>
@@ -101,7 +118,7 @@ function sendBook(book){
         <button class="secondary">Livro Recomendado</button>
         <h1>{{ randomBook.title }}</h1>
         <p>{{ randomBook.description }}</p>
-        <button class="primary">Acessar página do livro</button>
+        <button class="primary" @click="clickBook(randomBook)">Acessar página do livro</button>
       </div>
 
       <img :src="randomBook.cover" alt="book image" />
@@ -131,7 +148,7 @@ function sendBook(book){
 
       <ul>
         <li v-for="book in books" :key="book.id">
-          <img :src="book.cover" alt="book cover" />
+          <img :src="book.cover" alt="book cover" @click="clickBook(book)" title="Ver detalhes do livro"/>
           <h2>{{ book.title }}</h2>
           <p>{{ book.author }}</p>
           <div class="price-area">
