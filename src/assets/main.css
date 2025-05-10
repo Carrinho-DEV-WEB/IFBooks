@@ -75,7 +75,7 @@ p{
 	color: #4D4C4C;
 }
 
-button.primary{
+.primary{
 	background-color: #27AE60;
 	color: #fff;
 	border: none;
@@ -86,15 +86,25 @@ button.primary{
 	transition: .5s;
 }
 
-button.primary:hover{
+.primary:hover{
 	background-color: #1d7541;
 	box-shadow: 0px 3px 7px #979797;
 }
 
-button.secondary{
+.secondary{
 	background-color: white;
 	color: #27AE60;
 	border: 2px solid #27AE60;
 	padding: 0.8vw;
 	border-radius: 3px;
+}
+
+ul li img{
+  cursor: pointer;
+  transition: .5s;
+}
+
+ul li img:hover{
+  transform: scale(1.01);
+  box-shadow: 0px 3px 7px #979797;
 }
