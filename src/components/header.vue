@@ -1,4 +1,12 @@
 <script setup>
+import { useRouter } from 'vue-router'
+defineProps({
+  cart: {
+    type: Array,
+    default: () => []
+  }
+})
+const router = useRouter()
 </script>
 
 <template>
@@ -21,7 +29,7 @@
 
       <ul class="icons-list">
         <li>
-          <i class="fa-solid fa-cart-shopping"></i> |
+          <i class="fa-solid fa-cart-shopping" @click="router.push('/cart')" ></i> |
         </li>
         <li>
         <router-link to="/favorites">

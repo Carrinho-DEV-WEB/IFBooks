@@ -6,7 +6,7 @@ const favorites = inject('favorites');
 const updateToFavorites = inject('updateFavorites');
 const openBookDetails = inject('openBookDetails');
 const router = useRouter()
-
+const addToCart = inject('addToCart')
 //CATALOGO DE LIVROS
 const books = ref([
   {
@@ -163,7 +163,8 @@ function clickBook(book){
               :title="favorites.some((fav) => fav.id === book.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'"
             ></i>
           </div>
-          <button class="primary"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+          <button class="primary" @click="addToCart(book)"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+         
         </li>
       </ul>
     </section>

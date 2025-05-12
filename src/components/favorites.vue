@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const favorites = inject('favorites')
 const openBookDetails = inject('openBookDetails')
-
+const addToCart = inject('addToCart')
 //MUDAR PÁGINA PARA O CARD
 function clickBook(book) {
   openBookDetails(book)
@@ -43,7 +43,7 @@ function deleteFavorite(favorite) {
             title="Remover dos favoritos"
           ></i>
         </div>
-        <button class="primary"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+        <button class="primary" @click="addToCart(book)"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
       </li>
     </ul>
     <router-link class="primary" to="/">
