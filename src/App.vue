@@ -3,7 +3,6 @@ import { ref, provide } from 'vue';
 import { reactive } from 'vue'
 import Header from './components/header.vue';
 import Footer from './components/footer.vue';
-import Bookcard from './components/Bookcard.vue';
 import { RouterView } from 'vue-router'
 
 const favorites = ref([]);
@@ -58,7 +57,8 @@ provide('favorites', favorites);
 provide('openBook', openBook);
 provide('selectBook', selectBook);
 provide('openBookDetails', openBookDetails);
-provide('addToCart', addToCart)
+provide('addToCart', addToCart);
+provide('cart', cart)
 
 </script>
 
