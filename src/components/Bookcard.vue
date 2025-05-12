@@ -2,7 +2,9 @@
 import { inject } from 'vue'
 
 
-const selectBook = inject('selectBook')
+const selectBook = inject('selectBook');
+const addToCart = inject('addToCart');
+const cart = inject('cart');
 </script>
 
 <template>
@@ -15,7 +17,10 @@ const selectBook = inject('selectBook')
         <h3>{{ selectBook.publication }}</h3>
         <p>{{ selectBook.author }}</p>
         <p class="review">{{ selectBook.review }}</p>
-        <button class="primary"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+        <button :class="cart.some((item) => item.id === selectBook.id) ? 'inCart' : 'primary'" @click="addToCart(selectBook)">
+            <i class="fa-solid fa-cart-shopping"></i>
+              {{ cart.some((item) => item.id === selectBook.id) ? 'Adicionado' : 'Comprar' }}
+          </button>
       </div>
     </div>
     <router-link class="primary" to="/">
