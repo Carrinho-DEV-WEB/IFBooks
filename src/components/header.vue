@@ -1,12 +1,8 @@
 <script setup>
-import { useRouter } from 'vue-router'
-defineProps({
-  cart: {
-    type: Array,
-    default: () => []
-  }
-})
+import { useRouter} from 'vue-router'
+import {inject} from 'vue'
 const router = useRouter()
+const searchBook = inject('searchBook')
 </script>
 
 <template>
@@ -17,7 +13,7 @@ const router = useRouter()
       </router-link>
 
       <div class="search-area">
-          <input type="search" placeholder="Pesquisar" />
+        <input type="text" v-model="searchBook" placeholder="Pesquisar" />
       </div>
 
       <ul class="nav-list">
