@@ -52,6 +52,11 @@ function openBookDetails(book) {
   selectBook.value = book;
 }
 
+// GUARDAR O LIVRO PESQUISADO PELO USUÁRIO
+const searchBook = ref('')
+
+
+provide ('searchBook', searchBook)
 provide('updateFavorites', updateFavorites);
 provide('favorites', favorites);
 provide('openBook', openBook);

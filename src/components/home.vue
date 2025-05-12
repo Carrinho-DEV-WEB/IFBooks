@@ -8,6 +8,7 @@ const updateToFavorites = inject('updateFavorites')
 const openBookDetails = inject('openBookDetails')
 const addToCart = inject('addToCart')
 const cart = inject('cart')
+const searchBook = inject('searchBook')
 //CATALOGO DE LIVROS
 const books = ref([
   {
@@ -163,7 +164,7 @@ function clickBook(book) {
       <h2>Lançamentos</h2>
 
       <ul>
-        <li v-for="book in books" :key="book.id">
+        <li v-for="book in books.filter(book => book.title.toLowerCase().includes(searchBook.toLowerCase()))" :key="book.id">
           <img
             :src="book.cover"
             alt="book cover"
