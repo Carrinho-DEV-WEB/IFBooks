@@ -3,9 +3,10 @@ import { inject } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const favorites = inject('favorites')
-const openBookDetails = inject('openBookDetails')
-const addToCart = inject('addToCart')
+const favorites = inject('favorites');
+const openBookDetails = inject('openBookDetails');
+const addToCart = inject('addToCart');
+const cart = inject('cart');
 //MUDAR PÁGINA PARA O CARD
 function clickBook(book) {
   openBookDetails(book)
@@ -43,7 +44,10 @@ function deleteFavorite(favorite) {
             title="Remover dos favoritos"
           ></i>
         </div>
-        <button class="primary" @click="addToCart(book)"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+         <button :class="cart.some((item) => item.id === favorite.id) ? 'inCart' : 'primary'" @click="addToCart(favorite)">
+            <i class="fa-solid fa-cart-shopping"></i>
+              {{ cart.some((item) => item.id === favorite.id) ? 'Adicionado' : 'Comprar' }}
+          </button>
       </li>
     </ul>
     <router-link class="primary" to="/">

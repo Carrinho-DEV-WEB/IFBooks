@@ -1,8 +1,15 @@
 <script setup>
-defineProps(['cart', 'removeFromCart', 'updateQuantity'])
+defineProps(['cart', 'removeFromCart', 'updateQuantity']);
+import { inject } from 'vue';
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
+const router = useRouter();
+const openBookDetails = inject('openBookDetails');
+
+function clickBook(book) {
+  openBookDetails(book)
+  router.push('/Bookcard')
+}
 </script>
 <template>
   <div class="cart">
@@ -32,7 +39,7 @@ const router = useRouter()
 
       <div v-for="item in cart" :key="item.id" class="item">
         <div class="book-info">
-          <img :src="item.cover" alt="item.title" />
+          <img :src="item.cover" alt="item.title" @click="clickBook(item)"/>
           <div class="info">
             <h3>{{ item.title }}</h3>
             <p>{{ item.author }}</p>
